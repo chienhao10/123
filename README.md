@@ -14,5 +14,5 @@ We (Pikachu7 and Me) will update and reborn this project and won't leave the Lea
 Aaand thanks to Berb for this perfect lie (Rexy is selling PortAIO so im leaving this project) You did a great job :)
 =
 
-Report issues on the 'Isssues' tab on the top..
+Report issues on the 'Issues' tab on the top..
 =
