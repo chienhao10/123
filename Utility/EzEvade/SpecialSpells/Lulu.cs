@@ -7,10 +7,6 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
-<<<<<<< HEAD
-=======
-using LeagueSharp.Common;
->>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -49,11 +45,7 @@ namespace ezEvade.SpecialSpells
 
             if (gotObj == false)
             {
-<<<<<<< HEAD
                 DelayAction.Add(5000, () => GetLuluPix());
-=======
-                DelayAction.Add(5000, GetLuluPix);
->>>>>>> origin/master
             }
         }
 
@@ -74,11 +66,7 @@ namespace ezEvade.SpecialSpells
                         }
                         else
                         {
-<<<<<<< HEAD
                             Vector3 endPos2 = info.obj.Position.Extend(args.End, spellData.range).To3DWorld();
-=======
-                            Vector3 endPos2 = info.obj.Position.LSExtend(args.End, spellData.range);
->>>>>>> origin/master
                             SpellDetector.CreateSpellData(hero, info.obj.Position, endPos2, spellData, null, 0, false);
                         }
                     }

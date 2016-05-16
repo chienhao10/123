@@ -12,10 +12,6 @@ using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using EzEvade;
 using SharpDX;
-<<<<<<< HEAD
-=======
-using LeagueSharp.Common;
->>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -60,13 +56,8 @@ namespace ezEvade
             //Drawing.OnDraw += Game_OnDraw;
 
             Menu autoSetPingMenu = mainMenu.IsSubMenu ? mainMenu.Parent.AddSubMenuEx("AutoSetPing", "AutoSetPingMenu") : mainMenu.AddSubMenuEx("AutoSetPing", "AutoSetPingMenu");
-<<<<<<< HEAD
             autoSetPingMenu.Add("AutoSetPingOn", new CheckBox("Auto Set Ping", true));
             autoSetPingMenu.Add("AutoSetPercentile", new Slider("Auto Set Percentile", 75, 0, 100));
-=======
-            autoSetPingMenu.Add("AutoSetPingOn", new CheckBox("Auto Set Ping"));
-            autoSetPingMenu.Add("AutoSetPercentile", new Slider("Auto Set Percentile", 75));
->>>>>>> origin/master
 
 
             //autoSetPingMenu.AddItem(new MenuItem("TestSkillshotDelay", "TestSkillshotDelay").SetValue<bool>(false));
@@ -86,13 +77,8 @@ namespace ezEvade
 
         private void Game_OnDraw(EventArgs args)
         {
-<<<<<<< HEAD
             Render.Circle.DrawCircle(myHero.Position, 10, Color.Red, 5);
             Render.Circle.DrawCircle(myHero.ServerPosition, 10, Color.Red, 5);
-=======
-            LeagueSharp.Common.Render.Circle.DrawCircle(myHero.Position, 10, Color.Red, 5);
-            LeagueSharp.Common.Render.Circle.DrawCircle(myHero.ServerPosition, 10, Color.Red, 5);
->>>>>>> origin/master
         }
 
         private void Game_OnCastSpell(Spellbook sender, SpellbookCastSpellEventArgs args)
@@ -131,11 +117,7 @@ namespace ezEvade
                     //Draw.RenderObjects.Add(new Draw.RenderPosition(lastSpellCastServerPos, 1000, System.Drawing.Color.Red, 10));
                     Draw.RenderObjects.Add(new Draw.RenderCircle(missile.StartPosition.To2D(), 1000, System.Drawing.Color.Red, 10));
 
-<<<<<<< HEAD
                     var distance = lastSpellCastServerPos.Distance(missile.StartPosition.To2D());
-=======
-                    var distance = lastSpellCastServerPos.LSDistance(missile.StartPosition.To2D());
->>>>>>> origin/master
                     float moveTime = 1000 * distance / myHero.MoveSpeed;
                     Console.WriteLine("Extra Delay: " + moveTime);
                 }
@@ -164,11 +146,7 @@ namespace ezEvade
         {
             checkPing = false;
 
-<<<<<<< HEAD
             var distance = myHero.Position.To2D().Distance(myHero.ServerPosition.To2D());
-=======
-            var distance = myHero.Position.To2D().LSDistance(myHero.ServerPosition.To2D());
->>>>>>> origin/master
             float moveTime = 1000 * distance / myHero.MoveSpeed;
             //Console.WriteLine("Extra Delay: " + moveTime);
 
@@ -216,11 +194,7 @@ namespace ezEvade
                 if (checkPing
                     && lastIssueOrderArgs.Process == true
                     && lastIssueOrderArgs.Order == GameObjectOrder.MoveTo
-<<<<<<< HEAD
                     && lastIssueOrderArgs.TargetPosition.To2D().Distance(movePos) < 3
-=======
-                    && lastIssueOrderArgs.TargetPosition.To2D().LSDistance(movePos) < 3
->>>>>>> origin/master
                     && myHero.Path.Count() == 1
                     && args.Path.Count() == 2
                     && myHero.IsMoving)
@@ -232,11 +206,7 @@ namespace ezEvade
 
                     //Draw.RenderObjects.Add(new Draw.RenderCircle(lastMoveToServerPos, 1000, System.Drawing.Color.Red, 10));
 
-<<<<<<< HEAD
                     var distanceTillEnd = myHero.Path.Last().To2D().Distance(myHero.Position.To2D());
-=======
-                    var distanceTillEnd = myHero.Path.Last().To2D().LSDistance(myHero.Position.To2D());
->>>>>>> origin/master
                     float moveTimeTillEnd = 1000 * distanceTillEnd / myHero.MoveSpeed;
 
                     if (moveTimeTillEnd < 500)
@@ -262,13 +232,8 @@ namespace ezEvade
                         {
                             Draw.RenderObjects.Add(new Draw.RenderCircle(intersection, 1000, System.Drawing.Color.Red, 10));
 
-<<<<<<< HEAD
                             var distance = //args.Path.First().To2D().Distance(intersection);
                                 lastMoveToServerPos.Distance(intersection);
-=======
-                            var distance = //args.Path.First().To2D().LSDistance(intersection);
-                                lastMoveToServerPos.LSDistance(intersection);
->>>>>>> origin/master
                             float moveTime = 1000 * distance / myHero.MoveSpeed;
 
                             //Console.WriteLine("waa: " + distance);

@@ -81,11 +81,7 @@ namespace ezEvade
                 var sol = Geometry.VectorMovementCollision(spellPos, spell.endPos, spell.info.projectileSpeed, heroPos, ObjectCache.myHeroCache.moveSpeed);
 
                 var startTime = 0f;
-<<<<<<< HEAD
                 var endTime = spellPos.Distance(spell.endPos) / spell.info.projectileSpeed;
-=======
-                var endTime = spellPos.LSDistance(spell.endPos) / spell.info.projectileSpeed;
->>>>>>> origin/master
 
                 var time = (float) sol[0];
                 var pos = (Vector2) sol[1];
@@ -192,14 +188,10 @@ namespace ezEvade
                 else
                     t = Math.Max(t0, t1);
 
-<<<<<<< HEAD
                 if (t < 0)
                     collision = false;
                 else
                     collision = true;
-=======
-                collision = !(t < 0);
->>>>>>> origin/master
             }
 
             if (t < 0)

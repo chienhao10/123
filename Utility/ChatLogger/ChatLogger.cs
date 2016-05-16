@@ -16,17 +16,20 @@ namespace PortAIO.Utility.ChatLogger
         {
             CustomEvents.Game.OnGameLoad += eventArgs =>
             {
+                var AppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                var EloBuddyPath = AppDataPath + "\\EloBuddy\\";
+
                 //Define the logfile location
-                LogFile = Config.AppDataDirectory + "\\Chat Logs\\" + DateTime.Now.ToString("yy-MM-dd") + " " + DateTime.Now.ToString("HH-mm-ss") + " - " + ObjectManager.Player.ChampionName + ".txt";
+                LogFile = EloBuddyPath + "\\Chat Logs\\" + DateTime.Now.ToString("yy-MM-dd") + " " + DateTime.Now.ToString("HH-mm-ss") + " - " + ObjectManager.Player.ChampionName + ".txt";
                 
                 //Create a stopwatch which we will use to emulate in-game time.
                 Stopwatch = new Stopwatch();
                 Stopwatch.Start();
 
                 //Create the AppData Directory, if it doesn't exist.
-                if (!Directory.Exists(Config.AppDataDirectory + "\\Chat Logs\\"))
+                if (!Directory.Exists(EloBuddyPath + "\\Chat Logs\\"))
                 {
-                    Directory.CreateDirectory(Config.AppDataDirectory + "\\Chat Logs\\");
+                    Directory.CreateDirectory(EloBuddyPath + "\\Chat Logs\\");
                 }
 
                 //Show the user a message

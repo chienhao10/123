@@ -35,15 +35,9 @@ namespace ezEvade
 
 
             Menu drawMenu = menu.IsSubMenu ? menu.Parent.AddSubMenuEx("Draw", "Draw") : menu.AddSubMenuEx("Draw", "Draw");
-<<<<<<< HEAD
             drawMenu.Add("DrawSkillShots", new CheckBox("Draw SkillShots", true));
             drawMenu.Add("ShowStatus", new CheckBox("Show Evade Status", true));
             drawMenu.Add("DrawSpellPos", new CheckBox("Draw Spell Position", true));
-=======
-            drawMenu.Add("DrawSkillShots", new CheckBox("Draw SkillShots"));
-            drawMenu.Add("ShowStatus", new CheckBox("Show Evade Status"));
-            drawMenu.Add("DrawSpellPos", new CheckBox("Draw Spell Position"));
->>>>>>> origin/master
             drawMenu.Add("DrawEvadePosition", new CheckBox("Draw Evade Position", false));
 
             Menu dangerMenu = drawMenu.Parent.AddSubMenuEx("DangerLevel Drawings", "DangerLevelDrawings");
@@ -101,15 +95,10 @@ namespace ezEvade
                     }
                     else
                     {
-<<<<<<< HEAD
                         if (Evade.isDodgeDangerousEnabled())
                             Drawing.DrawText(heroPos.X - dimension.Width / 2, heroPos.Y, Color.Yellow, "Evade: ON");
                         else
                             Drawing.DrawText(heroPos.X - dimension.Width / 2, heroPos.Y, Color.White, "Evade: ON");
-=======
-                        Drawing.DrawText(heroPos.X - dimension.Width/2, heroPos.Y,
-                            Evade.isDodgeDangerousEnabled() ? Color.Yellow : Color.White, "Evade: ON");
->>>>>>> origin/master
                     }
                 }
                 else

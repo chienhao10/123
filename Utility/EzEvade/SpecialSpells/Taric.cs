@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Linq;
-<<<<<<< HEAD
 using EloBuddy;
 using EloBuddy.SDK;
-=======
-using LeagueSharp;
-using LeagueSharp.Common;
-using EloBuddy;
->>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -41,19 +35,11 @@ namespace ezEvade.SpecialSpells
                 sdata.projectileSpeed = int.MaxValue;
                 sdata.dangerlevel = 3;
 
-<<<<<<< HEAD
                 var partner = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.HasBuff("taricwleashactive"));
                 if (partner != null && partner.ChampionName != "Taric")
                 {
                     var start = partner.ServerPosition.To2D();
                     var direction = (args.End.To2D() - start).Normalized();
-=======
-                var partner = HeroManager.Enemies.FirstOrDefault(x => x.HasBuff("taricwleashactive"));
-                if (partner != null && partner.ChampionName != "Taric")
-                {
-                    var start = partner.ServerPosition.LSTo2D();
-                    var direction = (args.End.LSTo2D() - start).LSNormalized();
->>>>>>> origin/master
                     var end = start + direction * spellData.range;
 
                     SpellDetector.CreateSpellData(partner, start.To3D(), end.To3D(), sdata);

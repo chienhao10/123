@@ -45,7 +45,6 @@ namespace ezEvade
 
         public static bool UseEkkoR(EvadeSpellData evadeSpell, bool process = true)
         {
-<<<<<<< HEAD
             foreach (var obj in ObjectManager.Get<Obj_AI_Minion>())
             {
                 if (obj != null && obj.IsValid && !obj.IsDead && obj.Name == "Ekko" && obj.IsAlly)
@@ -59,13 +58,6 @@ namespace ezEvade
                     }
 
                 }
-=======
-            if ((from obj in ObjectManager.Get<Obj_AI_Minion>() where obj != null && obj.IsValid && !obj.IsDead && obj.Name == "Ekko" && obj.IsAlly select obj.ServerPosition.To2D()).Any(blinkPos => !blinkPos.CheckDangerousPos(10)))
-            {
-                EvadeSpell.CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell), process);
-                //DelayAction.Add(50, () => myHero.IssueOrder(GameObjectOrder.MoveTo, posInfo.position.To3D()));
-                return true;
->>>>>>> origin/master
             }
 
             return false;

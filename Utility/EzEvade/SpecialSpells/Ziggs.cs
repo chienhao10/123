@@ -7,10 +7,6 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
-<<<<<<< HEAD
-=======
-using LeagueSharp.Common;
->>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -37,28 +33,17 @@ namespace ezEvade.SpecialSpells
                 var endPos = args.End.To2D();
                 var dir = (endPos - startPos).Normalized();
 
-<<<<<<< HEAD
                 if (endPos.Distance(startPos) > 850)
-=======
-                if (endPos.LSDistance(startPos) > 850)
->>>>>>> origin/master
                 {
                     endPos = startPos + dir * 850;
                 }
 
                 SpellDetector.CreateSpellData(hero, args.Start, endPos.To3D(), spellData, null, 0, false);
 
-<<<<<<< HEAD
                 var endPos2 = endPos + dir * 0.4f * startPos.Distance(endPos);
                 SpellDetector.CreateSpellData(hero, args.Start, endPos2.To3D(), spellData, null, 250, false);
 
                 var endPos3 = endPos2 + dir * 0.6f * endPos.Distance(endPos2);
-=======
-                var endPos2 = endPos + dir * 0.4f * startPos.LSDistance(endPos);
-                SpellDetector.CreateSpellData(hero, args.Start, endPos2.To3D(), spellData, null, 250, false);
-
-                var endPos3 = endPos2 + dir * 0.6f * endPos.LSDistance(endPos2);
->>>>>>> origin/master
                 SpellDetector.CreateSpellData(hero, args.Start, endPos3.To3D(), spellData, null, 800);
 
                 specialSpellArgs.noProcess = true;

@@ -15,10 +15,6 @@ using EloBuddy.SDK.Rendering;
 using EzEvade;
 using Microsoft.SqlServer.Server;
 using SharpDX;
-<<<<<<< HEAD
-=======
-using LeagueSharp.Common;
->>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -34,11 +30,8 @@ namespace ezEvade
         private static Vector2 startWalkPos;
         private static float startWalkTime = 0;
 
-<<<<<<< HEAD
         private static bool testingCollision = false;
 
-=======
->>>>>>> origin/master
         private static float lastStopingTime = 0;
 
         private static IOrderedEnumerable<PositionInfo> sortedBestPos;
@@ -58,28 +51,20 @@ namespace ezEvade
         private static float getWatchTimer { get { return EvadeUtils.TickCount; } }
 
         private static float lastTimerCheck = 0;
-<<<<<<< HEAD
         private static bool lastRandomMoveCoeff = false;
 
         private static float lastRightMouseClickTime = 0;
 
         private static EvadeCommand lastTestMoveToCommand;
 
-=======
-        private static float lastRightMouseClickTime = 0;
-
->>>>>>> origin/master
         private static float lastSpellCastTimeEx = 0;
         private static float lastSpellCastTime = 0;
         private static float lastHeroSpellCastTime = 0;
 
         private static MissileClient testMissile = null;
         private static float testMissileStartTime = 0;
-<<<<<<< HEAD
         private static float testMissileStartSpeed = 0;
 
-=======
->>>>>>> origin/master
         public EvadeTester(Menu mainMenu)
         {
             lastGameTimerStart = getGameTimer;
@@ -117,7 +102,6 @@ namespace ezEvade
             menu = mainMenu;
 
             testMenu = mainMenu.IsSubMenu ? mainMenu.Parent.AddSubMenuEx("Test", "Test") : mainMenu.AddSubMenuEx("Test", "Test");
-<<<<<<< HEAD
             testMenu.Add("TestWall", new CheckBox("TestWall", true));
             testMenu.Add("TestPath", new CheckBox("TestPath", true));
             testMenu.Add("TestTracker", new CheckBox("TestTracker", false));
@@ -129,19 +113,6 @@ namespace ezEvade
             testMenu.Add("ShowProcessSpell", new CheckBox("ShowProcessSpell", true));
             testMenu.Add("ShowMissileInfo", new CheckBox("ShowMissileInfo", true));
             testMenu.Add("ShowWindupTime", new CheckBox("ShowWindupTime", true));
-=======
-            testMenu.Add("TestWall", new CheckBox("TestWall"));
-            testMenu.Add("TestPath", new CheckBox("TestPath"));
-            testMenu.Add("TestTracker", new CheckBox("TestTracker", false));
-            testMenu.Add("TestHeroPos", new CheckBox("TestHeroPos"));
-            testMenu.Add("DrawHeroPos", new CheckBox("DrawHeroPos"));
-            testMenu.Add("TestSpellEndTime", new CheckBox("TestSpellEndTime"));
-            testMenu.Add("ShowBuffs", new CheckBox("ShowBuffs"));
-            testMenu.Add("ShowDashInfo", new CheckBox("ShowDashInfo"));
-            testMenu.Add("ShowProcessSpell", new CheckBox("ShowProcessSpell"));
-            testMenu.Add("ShowMissileInfo", new CheckBox("ShowMissileInfo"));
-            testMenu.Add("ShowWindupTime", new CheckBox("ShowWindupTime"));
->>>>>>> origin/master
             testMenu.Add("TestMoveTo", new KeyBind("TestMoveTo", false, KeyBind.BindTypes.PressToggle, 'L'));
             testMenu.Add("EvadeTesterPing", new CheckBox("EvadeTesterPing", false));
 
@@ -214,11 +185,7 @@ namespace ezEvade
 
                 if (args.IsDash && testMenu.Get<CheckBox>("ShowDashInfo").CurrentValue)
                 {
-<<<<<<< HEAD
                     var dist = args.Path.First().Distance(args.Path.Last());
-=======
-                    var dist = args.Path.First().LSDistance(args.Path.Last());
->>>>>>> origin/master
                     ConsolePrinter.Print("Dash Speed: " + args.Speed + " Dash dist: " + dist);
                 }
 
@@ -268,11 +235,7 @@ namespace ezEvade
             {
                 if (testMissile != null && testMissile.NetworkId == sender.NetworkId)
                 {
-<<<<<<< HEAD
                     var range = sender.Position.To2D().Distance(testMissile.StartPosition.To2D());
-=======
-                    var range = sender.Position.To2D().LSDistance(testMissile.StartPosition.To2D());
->>>>>>> origin/master
                     ConsolePrinter.Print("Est.Missile range: " + range);
 
                     ConsolePrinter.Print("Est.Missile speed: " + range / (EvadeUtils.TickCount - testMissileStartTime));
@@ -372,11 +335,7 @@ namespace ezEvade
             {
                 if (missile != null && missile.IsValid && !missile.IsDead)
                 {
-<<<<<<< HEAD
                     var dist = missile.Position.To2D().Distance(testMissileSpeedStartPos);
-=======
-                    var dist = missile.Position.To2D().LSDistance(testMissileSpeedStartPos);
->>>>>>> origin/master
                     ConsolePrinter.Print("Est.Missile speed: " + dist / (EvadeUtils.TickCount - testMissileSpeedStartTime));
                 }
             });
@@ -388,11 +347,7 @@ namespace ezEvade
                 && missile.StartPosition != null && missile.EndPosition != null)
             {
 
-<<<<<<< HEAD
                 if (missile.StartPosition.Distance(myHero.Position) < spellData.range + 1000)
-=======
-                if (missile.StartPosition.LSDistance(myHero.Position) < spellData.range + 1000)
->>>>>>> origin/master
                 {
                     var hero = missile.SpellCaster;
 
@@ -499,11 +454,7 @@ namespace ezEvade
             var pos2 = spell.currentSpellPosition;
             if (spell.spellObject != null)
             {
-<<<<<<< HEAD
                 ConsolePrinter.Print("Compare: " + (pos2.Distance(pos)) / (EvadeUtils.TickCount - time));
-=======
-                ConsolePrinter.Print("Compare: " + (pos2.LSDistance(pos)) / (EvadeUtils.TickCount - time));
->>>>>>> origin/master
             }
 
         }
@@ -515,11 +466,7 @@ namespace ezEvade
 
             if (spell.spellObject != null)
             {
-<<<<<<< HEAD
                 ConsolePrinter.Print("start distance: " + (spell.startPos.Distance(pos1)));
-=======
-                ConsolePrinter.Print("start distance: " + (spell.startPos.LSDistance(pos1)));
->>>>>>> origin/master
             }
 
             DelayAction.Add(250, () => CompareSpellLocation(spell, pos1, timeNow));
@@ -531,11 +478,7 @@ namespace ezEvade
             {
                 if (EvadeUtils.TickCount - startWalkTime > 500 && myHero.IsMoving == false)
                 {
-<<<<<<< HEAD
                     //ConsolePrinter.Print("walkspeed: " + startWalkPos.Distance(ObjectCache.myHeroCache.serverPos2D) / (Evade.GetTickCount - startWalkTime));
-=======
-                    //ConsolePrinter.Print("walkspeed: " + startWalkPos.LSDistance(ObjectCache.myHeroCache.serverPos2D) / (Evade.GetTickCount - startWalkTime));
->>>>>>> origin/master
                     startWalkTime = 0;
                 }
             }
@@ -558,11 +501,7 @@ namespace ezEvade
             {
                 if (myHero.IsDashing())
                 {
-<<<<<<< HEAD
                     //ConsolePrinter.Print("Dash Speed: " + dashInfo.Speed + " Dash dist: " + dashInfo.EndPos.Distance(dashInfo.StartPos));
-=======
-                    //ConsolePrinter.Print("Dash Speed: " + dashInfo.Speed + " Dash dist: " + dashInfo.EndPos.LSDistance(dashInfo.StartPos));
->>>>>>> origin/master
                 }
             }
 
@@ -679,11 +618,7 @@ namespace ezEvade
             {         
                 if (testingCollision)
                 {
-<<<<<<< HEAD
                     if (args.TargetPosition.To2D().Distance(testCollisionPos) < 3)
-=======
-                    if (args.TargetPosition.To2D().LSDistance(testCollisionPos) < 3)
->>>>>>> origin/master
                     {
                         //var path = myHero.GetPath();
                         //circleRenderPos
@@ -723,13 +658,8 @@ namespace ezEvade
                     float movingCollisionTime = MathUtils.GetCollisionTime(heroPos, spellPos, walkDir * (speed - 25), spell.direction * (spell.info.projectileSpeed - 200), ObjectCache.myHeroCache.boundingRadius, spell.radius, out isCollision);
                     if (isCollision)
                     {
-<<<<<<< HEAD
                         //ConsolePrinter.Print("aaaa" + spellPos.Distance(spell.endPos) / spell.info.projectileSpeed);
                         if (true)//spellPos.Distance(spell.endPos) / spell.info.projectileSpeed > movingCollisionTime)
-=======
-                        //ConsolePrinter.Print("aaaa" + spellPos.LSDistance(spell.endPos) / spell.info.projectileSpeed);
-                        if (true)//spellPos.LSDistance(spell.endPos) / spell.info.projectileSpeed > movingCollisionTime)
->>>>>>> origin/master
                         {
                             ConsolePrinter.Print("movingCollisionTime: " + movingCollisionTime);
                             //circleRenderPos = heroPos + walkDir * speed * movingCollisionTime;
@@ -816,11 +746,7 @@ namespace ezEvade
                     Vector2 spellPos = spell.currentSpellPosition;
 
 
-<<<<<<< HEAD
                     Render.Circle.DrawCircle(new Vector3(spellPos.X, spellPos.Y, myHero.Position.Z), spell.info.radius, Color.White, 3);
-=======
-                    LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(spellPos.X, spellPos.Y, myHero.Position.Z), spell.info.radius, Color.White, 3);
->>>>>>> origin/master
 
                     /*spellPos = spellPos + spell.direction * spell.info.projectileSpeed * (60 / 1000); //move the spellPos by 50 miliseconds forwards
                     spellPos = spellPos + spell.direction * 200; //move the spellPos by 50 units forwards        
@@ -837,7 +763,6 @@ namespace ezEvade
                     var heroPos2 = EvadeHelper.GetRealHeroPos(ObjectCache.gamePing + 50);// path[path.Length - 1].To2D();
                     var heroPos1 = ObjectCache.myHeroCache.serverPos2D;
 
-<<<<<<< HEAD
                     Render.Circle.DrawCircle(new Vector3(heroPos2.X, heroPos2.Y, myHero.ServerPosition.Z), ObjectCache.myHeroCache.boundingRadius, Color.Red, 3);
                     Render.Circle.DrawCircle(new Vector3(myHero.ServerPosition.X, myHero.ServerPosition.Y, myHero.ServerPosition.Z), ObjectCache.myHeroCache.boundingRadius, Color.White, 3);
 
@@ -846,26 +771,12 @@ namespace ezEvade
                     Drawing.DrawText(heroPos.X - dimension.Width / 2, heroPos.Y, Color.Red, "" + (int)(heroPos2.Distance(heroPos1)));
 
                     Render.Circle.DrawCircle(new Vector3(circleRenderPos.X, circleRenderPos.Y, myHero.ServerPosition.Z), 10, Color.Red, 3);
-=======
-                    LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(heroPos2.X, heroPos2.Y, myHero.ServerPosition.Z), ObjectCache.myHeroCache.boundingRadius, Color.Red, 3);
-                    LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(myHero.ServerPosition.X, myHero.ServerPosition.Y, myHero.ServerPosition.Z), ObjectCache.myHeroCache.boundingRadius, Color.White, 3);
-
-                    var heroPos = Drawing.WorldToScreen(ObjectManager.Player.Position);
-                    var dimension = Drawing.GetTextEntent("Evade: ON", 12);
-                    Drawing.DrawText(heroPos.X - dimension.Width / 2, heroPos.Y, Color.Red, "" + (int)(heroPos2.LSDistance(heroPos1)));
-
-                    LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(circleRenderPos.X, circleRenderPos.Y, myHero.ServerPosition.Z), 10, Color.Red, 3);
->>>>>>> origin/master
                 }
             }
 
             if (testMenu.Get<CheckBox>("DrawHeroPos").CurrentValue)
             {
-<<<<<<< HEAD
                 Render.Circle.DrawCircle(new Vector3(myHero.ServerPosition.X, myHero.ServerPosition.Y, myHero.ServerPosition.Z), ObjectCache.myHeroCache.boundingRadius, Color.White, 3);
-=======
-                LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(myHero.ServerPosition.X, myHero.ServerPosition.Y, myHero.ServerPosition.Z), ObjectCache.myHeroCache.boundingRadius, Color.White, 3);
->>>>>>> origin/master
             }
 
 
@@ -880,20 +791,12 @@ namespace ezEvade
                 Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
 
                 var dir = (Game.CursorPos - myHero.Position).Normalized();
-<<<<<<< HEAD
                 //var pos2 = myHero.Position - dir * Game.CursorPos.Distance(myHero.Position);
-=======
-                //var pos2 = myHero.Position - dir * Game.CursorPos.LSDistance(myHero.Position);
->>>>>>> origin/master
 
                 //var pos2 = myHero.Position.To2D() - dir.To2D() * 75;
                 var pos2 = Game.CursorPos.To2D() - dir.To2D() * 75;
 
-<<<<<<< HEAD
                 //Console.WriteLine(myHero.BBox.Maximum.Distance(myHero.Position));
-=======
-                //Console.WriteLine(myHero.BBox.Maximum.LSDistance(myHero.Position));
->>>>>>> origin/master
 
                 DelayAction.Add(20, () => Player.IssueOrder(GameObjectOrder.MoveTo, pos2.To3D(), false));
                 //myHero.IssueOrder(GameObjectOrder.MoveTo, pos2, false);
@@ -907,11 +810,7 @@ namespace ezEvade
                 foreach (Vector3 point in tPath)
                 {
                     var point2D = point.To2D();
-<<<<<<< HEAD
                     Render.Circle.DrawCircle(new Vector3(point.X, point.Y, point.Z), ObjectCache.myHeroCache.boundingRadius, Color.Violet, 3);
-=======
-                    LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(point.X, point.Y, point.Z), ObjectCache.myHeroCache.boundingRadius, Color.Violet, 3);
->>>>>>> origin/master
 
                     lastPoint = point2D;
                 }
@@ -936,10 +835,7 @@ namespace ezEvade
 
                     Vector2 to = Game.CursorPos.To2D();
                     var dir = (to - myHero.Position.To2D()).Normalized();
-<<<<<<< HEAD
                     Vector2 cPos1, cPos2;
-=======
->>>>>>> origin/master
 
                     var cpa = MathUtilsCPA.CPAPointsEx(myHero.Position.To2D(), dir * ObjectCache.myHeroCache.moveSpeed, spell.endPos, spell.direction * spell.info.projectileSpeed, to, spell.endPos);
                     var cpaTime = MathUtilsCPA.CPATime(myHero.Position.To2D(), dir * ObjectCache.myHeroCache.moveSpeed, spell.endPos, spell.direction * spell.info.projectileSpeed);
@@ -994,18 +890,12 @@ namespace ezEvade
                     var info = entry.Value;
 
                     Vector3 endPos2;
-<<<<<<< HEAD
                     if (info.usePosition == false)
                         endPos2 = info.obj.Position;
                     else
                         endPos2 = info.position;
 
                     Render.Circle.DrawCircle(new Vector3(endPos2.X, endPos2.Y, myHero.Position.Z), 50, Color.Green, 3);
-=======
-                    endPos2 = info.usePosition == false ? info.obj.Position : info.position;
-
-                    LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(endPos2.X, endPos2.Y, myHero.Position.Z), 50, Color.Green, 3);
->>>>>>> origin/master
                 }
 
 
@@ -1074,11 +964,7 @@ namespace ezEvade
 
                         if (EvadeHelper.CheckPathCollision(myHero, pos))
                         {
-<<<<<<< HEAD
                             Render.Circle.DrawCircle(new Vector3(pos.X, pos.Y, myHero.Position.Z), (float)25, Color.White, 3);
-=======
-                            LeagueSharp.Common.Render.Circle.DrawCircle(new Vector3(pos.X, pos.Y, myHero.Position.Z), (float)25, Color.White, 3);
->>>>>>> origin/master
                         }
 
                     }

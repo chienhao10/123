@@ -7,10 +7,6 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
-<<<<<<< HEAD
-=======
-using LeagueSharp.Common;
->>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -43,11 +39,7 @@ namespace ezEvade.SpecialSpells
                 && SpellDetector.onMissileSpells.TryGetValue("ViktorDeathRay3", out spellData)
                 && missile.StartPosition != null && missile.EndPosition != null)
             {
-<<<<<<< HEAD
                 var missileDist = missile.EndPosition.To2D().Distance(missile.StartPosition.To2D());
-=======
-                var missileDist = missile.EndPosition.To2D().LSDistance(missile.StartPosition.To2D());
->>>>>>> origin/master
                 var delay = missileDist / 1.5f + 1000;
 
                 spellData.spellDelay = delay;

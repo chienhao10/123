@@ -16,13 +16,10 @@ namespace PortAIO.Utility
 {
     class Loader
     {
-
-<<<<<<< HEAD
+        
         public static bool ChatLogger => Miscc["ChatLogger"].Cast<CheckBox>().CurrentValue;
         public static bool WhiteFeeder => Miscc["WhiteFeeder"].Cast<CheckBox>().CurrentValue;
-
-=======
->>>>>>> origin/master
+        
         public static bool useActivator { get { return Miscc["activator"].Cast<CheckBox>().CurrentValue; } }
         public static bool cheat { get { return Miscc["cheat"].Cast<CheckBox>().CurrentValue; } }
         public static bool useTracker { get { return Miscc["tracker"].Cast<CheckBox>().CurrentValue; } }
@@ -268,11 +265,11 @@ namespace PortAIO.Utility
             Miscc.Add("recall", new CheckBox("Enable Recall Tracker?"));
             Miscc.AddSeparator();
             Miscc.Add("skin", new CheckBox("Enable Skin Hack?"));
-<<<<<<< HEAD
+
             Miscc.Add("evade", new CheckBox("Enable Evade?"));
-=======
+
             Miscc.Add("evade", new CheckBox("Enable Evade?", false));
->>>>>>> origin/master
+
             Miscc.Add("godTracker", new CheckBox("Enable God Jungle Tracker?", false));
             Miscc.AddSeparator();
             Miscc.Add("ping", new CheckBox("Enable Ping Block?", false));
@@ -280,7 +277,7 @@ namespace PortAIO.Utility
             Miscc.Add("gank", new CheckBox("Enable GankAlerter?", false));
             Miscc.AddSeparator();
             Miscc.Add("cheat", new CheckBox("Enable TheCheater?", false));
-<<<<<<< HEAD
+
             Miscc.Add("ChatLogger", new CheckBox("Enable ChatLogger?", false));
             Miscc.AddSeparator();
             Miscc.AddLabel("Guaranteed insta Challenjour Kappa");
@@ -288,8 +285,6 @@ namespace PortAIO.Utility
             Miscc.AddSeparator();
 
 
-=======
->>>>>>> origin/master
             /*
             Miscc.Add("stream", new CheckBox("Enable StreamBuddy?", false));
             public static bool stream { get { return Miscc["stream"].Cast<CheckBox>().CurrentValue; } }

@@ -67,7 +67,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\Program Files (x86)\EloBuddy\System\Newtonsoft.Json.dll</HintPath>
-      <HintPath>..\..\..\..\Program Files (x86)\EloBuddy\System\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX, Version=2.6.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1180,9 +1179,7 @@
     </Compile>
     <Compile Include="Resources\SPRITES\EloDisplayer\EloDisplayer.Designer.cs" />
     <Compile Include="Utility\BaseUlt3\BaseUlt.cs" />
-
     <Compile Include="Utility\ChatLogger\ChatLogger.cs" />
-
     <Compile Include="Utility\ElUtilitySuite\Entry.cs" />
     <Compile Include="Utility\ElUtilitySuite\IPlugin.cs" />
     <Compile Include="Utility\ElUtilitySuite\Items\Defensive.cs" />
@@ -1228,9 +1225,7 @@
     <Compile Include="Utility\EzEvade\Helpers\PositionInfo.cs" />
     <Compile Include="Utility\EzEvade\Helpers\Situation.cs" />
     <Compile Include="Utility\EzEvade\Items.cs" />
-
     <Compile Include="Utility\EzEvade\Program.cs" />
-
     <Compile Include="Utility\EzEvade\Render.cs" />
     <Compile Include="Utility\EzEvade\SpecialSpells\AllChampions.cs" />
     <Compile Include="Utility\EzEvade\SpecialSpells\Ashe.cs" />
@@ -1238,9 +1233,7 @@
     <Compile Include="Utility\EzEvade\SpecialSpells\Ekko.cs" />
     <Compile Include="Utility\EzEvade\SpecialSpells\Fizz.cs" />
     <Compile Include="Utility\EzEvade\SpecialSpells\JarvanIV.cs" />
-
     <Compile Include="Utility\EzEvade\SpecialSpells\Jayce.cs" />
-
     <Compile Include="Utility\EzEvade\SpecialSpells\Jinx.cs" />
     <Compile Include="Utility\EzEvade\SpecialSpells\Lucian.cs" />
     <Compile Include="Utility\EzEvade\SpecialSpells\Lulu.cs" />
@@ -1296,9 +1289,7 @@
     <Compile Include="Utility\UniversalGankAlerter\Program.cs" />
     <Compile Include="Utility\UniversalPingBlock\Program.cs" />
     <Compile Include="Utility\UniversalRecallTracker\Program.cs" />
-
     <Compile Include="Utility\WhiteFeeder\WhiteFeeder.cs" />
-
     <Compile Include="Utility\WreckingBall\ChampInfo.cs" />
     <Compile Include="Utility\WreckingBall\WreckingBall.cs" />
   </ItemGroup>

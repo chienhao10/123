@@ -44,10 +44,7 @@ namespace ezEvade
         public float sideRadius;
         public int splits;
         public bool usePackets = false;
-<<<<<<< HEAD
         public bool invert = false;
-=======
->>>>>>> origin/master
         public float extraDelay = 0;
         public float extraDistance = 0;
         public bool isThreeWay = false;
@@ -60,10 +57,6 @@ namespace ezEvade
         public float extraDrawHeight = 0;
         public string[] extraSpellNames;
         public string[] extraMissileNames;
-<<<<<<< HEAD
-=======
-        public bool invert = false;
->>>>>>> origin/master
         public CollisionObjectType[] collisionObjects = { };
 
         public SpellData()

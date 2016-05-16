@@ -39,11 +39,7 @@ namespace ezEvade.SpecialSpells
                     var predictedHeroPos = target.Position + heroWalkDir * target.MoveSpeed * (spellDelay);
 
 
-<<<<<<< HEAD
                     SpellDetector.CreateSpellData(hero, args.Start, predictedHeroPos, spellData, null, 0);
-=======
-                    SpellDetector.CreateSpellData(hero, args.Start, predictedHeroPos, spellData);
->>>>>>> origin/master
 
                     specialSpellArgs.noProcess = true;
                 }

@@ -35,8 +35,7 @@ namespace PortAIO
         //private static float IntroTimer = Game.Time;
     
 
-
-        private static Render.Sprite Intro;
+        
         private static float IntroTimer = Game.Time;
         public static SCommon.PluginBase.Champion Champion;
         public static List<string> RandomUltChampsList = new List<string>(new[] { "Ezreal", "Jinx", "Ashe", "Draven", "Gangplank", "Ziggs", "Lux", "Xerath" });

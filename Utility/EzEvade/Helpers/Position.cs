@@ -8,10 +8,6 @@ using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Menu.Values;
 using SharpDX;
-<<<<<<< HEAD
-=======
-using LeagueSharp.Common;
->>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -21,7 +17,6 @@ namespace ezEvade
 
         public static int CheckPosDangerLevel(this Vector2 pos, float extraBuffer)
         {
-<<<<<<< HEAD
             var dangerlevel = 0;
             foreach (KeyValuePair<int, Spell> entry in SpellDetector.spells)
             {
@@ -33,9 +28,6 @@ namespace ezEvade
                 }
             }
             return dangerlevel;
-=======
-            return SpellDetector.spells.Select(entry => entry.Value).Where(spell => pos.InSkillShot(spell, ObjectCache.myHeroCache.boundingRadius + extraBuffer)).Sum(spell => spell.dangerlevel);
->>>>>>> origin/master
         }
 
         public static bool InSkillShot(this Vector2 position, Spell spell, float radius, bool predictCollision = true)
@@ -56,38 +48,22 @@ namespace ezEvade
 
                 var projection = position.ProjectOn(spellPos, spellEndPos);
 
-<<<<<<< HEAD
                 /*if (projection.SegmentPoint.Distance(spellEndPos) < 100) //Check Skillshot endpoints
-=======
-                /*if (projection.SegmentPoint.LSDistance(spellEndPos) < 100) //Check Skillshot endpoints
->>>>>>> origin/master
                 {
                     //unfinished
                 }*/
 
-<<<<<<< HEAD
                 return projection.IsOnSegment && projection.SegmentPoint.Distance(position) <= spell.radius + radius;
-=======
-                return projection.IsOnSegment && projection.SegmentPoint.LSDistance(position) <= spell.radius + radius;
->>>>>>> origin/master
             }
             else if (spell.spellType == SpellType.Circular)
             {
                 if (spell.info.spellName == "VeigarEventHorizon")
                 {
-<<<<<<< HEAD
                     return position.Distance(spell.endPos) <= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius
                         && position.Distance(spell.endPos) >= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius - 125;
                 }
 
                 return position.Distance(spell.endPos) <= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius;
-=======
-                    return position.LSDistance(spell.endPos) <= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius
-                        && position.LSDistance(spell.endPos) >= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius - 125;
-                }
-
-                return position.LSDistance(spell.endPos) <= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius;
->>>>>>> origin/master
             }
             else if (spell.spellType == SpellType.Arc)
             {
@@ -96,17 +72,10 @@ namespace ezEvade
                     return false;
                 }
 
-<<<<<<< HEAD
                 var spellRange = spell.startPos.Distance(spell.endPos);
                 var midPoint = spell.startPos + spell.direction * (spellRange/2);
 
                 return position.Distance(midPoint) <= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius;
-=======
-                var spellRange = spell.startPos.LSDistance(spell.endPos);
-                var midPoint = spell.startPos + spell.direction * (spellRange/2);
-
-                return position.LSDistance(midPoint) <= spell.radius + radius - ObjectCache.myHeroCache.boundingRadius;
->>>>>>> origin/master
             }
             else if (spell.spellType == SpellType.Cone)
             {
@@ -138,11 +107,7 @@ namespace ezEvade
                     continue;
                 }
 
-<<<<<<< HEAD
                 var distToTurret = pos.Distance(turret.Position.To2D());
-=======
-                var distToTurret = pos.LSDistance(turret.Position.To2D());
->>>>>>> origin/master
 
                 minDist = Math.Min(minDist, distToTurret);
             }
@@ -152,7 +117,6 @@ namespace ezEvade
 
         public static float GetDistanceToChampions(this Vector2 pos)
         {
-<<<<<<< HEAD
             float minDist = float.MaxValue;
 
             foreach (var hero in EntityManager.Heroes.Enemies)
@@ -167,14 +131,10 @@ namespace ezEvade
             }
 
             return minDist;
-=======
-            return (from hero in EntityManager.Heroes.Enemies where hero != null && hero.IsValid && !hero.IsDead && hero.IsVisible select hero.ServerPosition.To2D() into heroPos select heroPos.LSDistance(pos)).Concat(new[] {float.MaxValue}).Min();
->>>>>>> origin/master
         }
 
         public static bool HasExtraAvoidDistance(this Vector2 pos, float extraBuffer)
         {
-<<<<<<< HEAD
             foreach (KeyValuePair<int, Spell> entry in SpellDetector.spells)
             {
                 Spell spell = entry.Value;
@@ -188,18 +148,11 @@ namespace ezEvade
                 }
             }
             return false;
-=======
-            return SpellDetector.spells.Select(entry => entry.Value).Where(spell => spell.spellType == SpellType.Line).Any(spell => pos.InSkillShot(spell, ObjectCache.myHeroCache.boundingRadius + extraBuffer));
->>>>>>> origin/master
         }
 
         public static float GetPositionValue(this Vector2 pos)
         {
-<<<<<<< HEAD
             float posValue = pos.Distance(Game.CursorPos.To2D());
-=======
-            float posValue = pos.LSDistance(Game.CursorPos.To2D());
->>>>>>> origin/master
 
             if (ObjectCache.menuCache.cache["PreventDodgingNearEnemy"].Cast<CheckBox>().CurrentValue)
             {
@@ -228,7 +181,6 @@ namespace ezEvade
 
         public static bool CheckDangerousPos(this Vector2 pos, float extraBuffer, bool checkOnlyDangerous = false)
         {
-<<<<<<< HEAD
             foreach (KeyValuePair<int, Spell> entry in SpellDetector.spells)
             {
                 Spell spell = entry.Value;
@@ -244,9 +196,6 @@ namespace ezEvade
                 }
             }
             return false;
-=======
-            return SpellDetector.spells.Select(entry => entry.Value).Where(spell => !checkOnlyDangerous || spell.dangerlevel >= 3).Any(spell => pos.InSkillShot(spell, ObjectCache.myHeroCache.boundingRadius + extraBuffer));
->>>>>>> origin/master
         }
 
         public static List<Vector2> GetSurroundingPositions(int maxPosToCheck = 150, int posRadius = 25)
