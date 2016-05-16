@@ -1135,18 +1135,18 @@ namespace SebbyLib.Movement
             }
 
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
-            Obj_AI_Base.OnNewPath += AIHeroClient_OnNewPath;
+            Obj_AI_Base.OnNewPath += Obj_AI_Hero_OnNewPath;
             AttackableUnit.OnCreate += Obj_AI_Base_OnEnterLocalVisiblityClient;
         }
 
         private static void Obj_AI_Base_OnEnterLocalVisiblityClient(GameObject sender, EventArgs args)
         {
-            if (sender.Type != GameObjectType.AIHeroClient || !sender.IsVisible) return;
+            if (sender.Type != GameObjectType.AIHeroClient) return;
 
             UnitTrackerInfoList.Find(x => x.NetworkId == sender.NetworkId).LastInvisableTick = Utils.TickCount;
         }
 
-        private static void AIHeroClient_OnNewPath(Obj_AI_Base sender, GameObjectNewPathEventArgs args)
+        private static void Obj_AI_Hero_OnNewPath(Obj_AI_Base sender, GameObjectNewPathEventArgs args)
         {
             if (sender.Type != GameObjectType.AIHeroClient) return;
 

@@ -376,6 +376,8 @@ namespace SebbyLib
                 };
                 var poutput2 = SebbyLib.Movement.Prediction.GetPrediction(predInput2);
 
+                //var poutput2 = QWER.GetPrediction(target);
+
                 if (QWER.Speed != float.MaxValue && OktwCommon.CollisionYasuo(Player.ServerPosition, poutput2.CastPosition))
                     return;
 
@@ -401,22 +403,21 @@ namespace SebbyLib
                         QWER.Cast(poutput2.CastPosition);
                 }
             }
-
-            if (getSliderItem("PredictionMODE") == 1)
+            else if (getSliderItem("PredictionMODE") == 1)
             {
-                var CoreType2 = Prediction.SkillshotType.SkillshotLine;
-                var aoe2 = false;
+                SebbyLib.Prediction.SkillshotType CoreType2 = SebbyLib.Prediction.SkillshotType.SkillshotLine;
+                bool aoe2 = false;
 
                 if (QWER.Type == SkillshotType.SkillshotCircle)
                 {
-                    CoreType2 = Prediction.SkillshotType.SkillshotCircle;
+                    CoreType2 = SebbyLib.Prediction.SkillshotType.SkillshotCircle;
                     aoe2 = true;
                 }
 
                 if (QWER.Width > 80 && !QWER.Collision)
                     aoe2 = true;
 
-                var predInput2 = new PredictionInput
+                var predInput2 = new SebbyLib.Prediction.PredictionInput
                 {
                     Aoe = aoe2,
                     Collision = QWER.Collision,
@@ -428,71 +429,80 @@ namespace SebbyLib
                     Unit = target,
                     Type = CoreType2
                 };
-                var poutput2 = Prediction.Prediction.GetPrediction(predInput2);
+                var poutput2 = SebbyLib.Prediction.Prediction.GetPrediction(predInput2);
 
-                if (QWER.Speed != float.MaxValue &&
-                    OktwCommon.CollisionYasuo(Player.ServerPosition, poutput2.CastPosition))
+                //var poutput2 = QWER.GetPrediction(target);
+
+                if (QWER.Speed != float.MaxValue && OktwCommon.CollisionYasuo(Player.ServerPosition, poutput2.CastPosition))
                     return;
 
                 if (getSliderItem("HitChance") == 0)
                 {
-                    if (poutput2.Hitchance >= HitChance.VeryHigh)
+                    if (poutput2.Hitchance >= SebbyLib.Prediction.HitChance.VeryHigh)
                         QWER.Cast(poutput2.CastPosition);
-                    else if (predInput2.Aoe && poutput2.AoeTargetsHitCount > 1 && poutput2.Hitchance >= HitChance.High)
+                    else if (predInput2.Aoe && poutput2.AoeTargetsHitCount > 1 && poutput2.Hitchance >= SebbyLib.Prediction.HitChance.High)
                     {
                         QWER.Cast(poutput2.CastPosition);
                     }
+
                 }
                 else if (getSliderItem("HitChance") == 1)
                 {
-                    if (poutput2.Hitchance >= HitChance.High)
+                    if (poutput2.Hitchance >= SebbyLib.Prediction.HitChance.High)
                         QWER.Cast(poutput2.CastPosition);
+
                 }
                 else if (getSliderItem("HitChance") == 2)
                 {
-                    if (poutput2.Hitchance >= HitChance.Medium)
+                    if (poutput2.Hitchance >= SebbyLib.Prediction.HitChance.Medium)
                         QWER.Cast(poutput2.CastPosition);
                 }
                 if (Game.Time - DrawSpellTime > 0.5)
                 {
                     DrawSpell = QWER;
                     DrawSpellTime = Game.Time;
+
                 }
                 DrawSpellPos = poutput2;
             }
-
-            if (getSliderItem("PredictionMODE") == 0)
+            else if (getSliderItem("PredictionMODE") == 0)
             {
                 if (getSliderItem("HitChance") == 0)
                 {
                     QWER.CastIfHitchanceEquals(target, LeagueSharp.Common.HitChance.VeryHigh);
+                    return;
                 }
                 else if (getSliderItem("HitChance") == 1)
                 {
                     QWER.CastIfHitchanceEquals(target, LeagueSharp.Common.HitChance.High);
+                    return;
                 }
                 else if (getSliderItem("HitChance") == 2)
                 {
                     QWER.CastIfHitchanceEquals(target, LeagueSharp.Common.HitChance.Medium);
+                    return;
                 }
             }
-
-            if (getSliderItem("PredictionMODE") == 2)
+            else if (getSliderItem("PredictionMODE") == 2)
             {
+
                 if (target is AIHeroClient && target.IsValid)
                 {
                     var t = target as AIHeroClient;
                     if (getSliderItem("HitChance") == 0)
                     {
                         QWER.SPredictionCast(t, LeagueSharp.Common.HitChance.VeryHigh);
+                        return;
                     }
                     else if (getSliderItem("HitChance") == 1)
                     {
                         QWER.SPredictionCast(t, LeagueSharp.Common.HitChance.High);
+                        return;
                     }
                     else if (getSliderItem("HitChance") == 2)
                     {
                         QWER.SPredictionCast(t, LeagueSharp.Common.HitChance.Medium);
+                        return;
                     }
                 }
                 else
