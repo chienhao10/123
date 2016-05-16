@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
+=======
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
+using EloBuddy;
+>>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -21,7 +28,11 @@ namespace ezEvade.SpecialSpells
         {
             if (spellData.spellName == "YasuoQW" || spellData.spellName == "YasuoQ3W")
             {
+<<<<<<< HEAD
                 var hero = EntityManager.Heroes.Enemies.FirstOrDefault(h => h.ChampionName == "Yasuo");
+=======
+                var hero = HeroManager.Enemies.FirstOrDefault(h => h.ChampionName == "Yasuo");
+>>>>>>> origin/master
                 if (hero != null)
                 {
                     AIHeroClient.OnProcessSpellCast += (sender, args) => ProcessSpell_YasuoQW(sender, args, spellData);

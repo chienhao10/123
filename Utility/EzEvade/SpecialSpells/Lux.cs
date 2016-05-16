@@ -41,7 +41,11 @@ namespace ezEvade.SpecialSpells
                     var pos1 = obj.Position.To2D() - dir * 1750;
                     var pos2 = obj.Position.To2D() + dir * 1750;
 
+<<<<<<< HEAD
                     SpellDetector.CreateSpellData(hero, pos1.To3D(), pos2.To3D(), spellData, null, 0);
+=======
+                    SpellDetector.CreateSpellData(hero, pos1.To3D(), pos2.To3D(), spellData);
+>>>>>>> origin/master
 
                     foreach (ObjectTrackerInfo gameObj in objList)
                     {

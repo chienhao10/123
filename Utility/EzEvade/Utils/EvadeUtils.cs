@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
+<<<<<<< HEAD
+=======
+using LeagueSharp.Common;
+>>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -44,11 +48,18 @@ namespace ezEvade
             {
                 if (hero.IsMoving)
                 {
+<<<<<<< HEAD
                     var path = new List<Vector2>();
                     path.Add(hero.ServerPosition.To2D());
                     path.AddRange(hero.Path.Select(point => point.To2D()));
 
                     var finalPath = EvadeUtils.CutPath(path, hero, delay);
+=======
+                    var path = new List<Vector2> {hero.ServerPosition.To2D()};
+                    path.AddRange(hero.Path.Select(point => point.To2D()));
+
+                    var finalPath = CutPath(path, hero, delay);
+>>>>>>> origin/master
 
                     return finalPath.Last();
                 }
@@ -88,7 +99,11 @@ namespace ezEvade
 
             for (var i = 0; i < path.Count - 1; i++)
             {
+<<<<<<< HEAD
                 var dist = path[i].Distance(path[i + 1]);
+=======
+                var dist = path[i].LSDistance(path[i + 1]);
+>>>>>>> origin/master
                 if (dist > Distance)
                 {
                     result.Add(path[i] + Distance * (path[i + 1] - path[i]).Normalized());
@@ -110,7 +125,11 @@ namespace ezEvade
 
             for (var i = 0; i < path.Count - 1; i++)
             {
+<<<<<<< HEAD
                 var dist = path[i].Distance(path[i + 1]);
+=======
+                var dist = path[i].LSDistance(path[i + 1]);
+>>>>>>> origin/master
                 if (dist > Distance)
                 {
                     result.Add(path[i] + Distance * (path[i + 1] - path[i]).Normalized());

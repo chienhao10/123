@@ -38,7 +38,11 @@ namespace ezEvade.SpecialSpells
                 var dir = (obj.Position - ObjectManager.Player.Position).Normalized();
                 var pos2 = pos1 + dir * 500;
 
+<<<<<<< HEAD
                 SpellDetector.CreateSpellData(hero, pos1, pos2, spellData, null, 0);
+=======
+                SpellDetector.CreateSpellData(hero, pos1, pos2, spellData);
+>>>>>>> origin/master
             }
         }
     }

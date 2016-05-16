@@ -38,7 +38,11 @@ namespace ezEvade.SpecialSpells
                 var pos2 = targetPoint + pDirection * spellData.sideRadius;
 
                 SpellDetector.CreateSpellData(hero, pos1.To3D(), pos2.To3D(), spellData, null, 0, false);
+<<<<<<< HEAD
                 SpellDetector.CreateSpellData(hero, pos2.To3D(), pos1.To3D(), spellData, null, 0);
+=======
+                SpellDetector.CreateSpellData(hero, pos2.To3D(), pos1.To3D(), spellData);
+>>>>>>> origin/master
 
                 specialSpellArgs.noProcess = true;
             }

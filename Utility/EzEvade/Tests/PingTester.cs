@@ -13,11 +13,15 @@ namespace ezEvade
 {
     class PingTester
     {
+<<<<<<< HEAD
         public static Menu testMenu;
 
         private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         private static float lastTimerCheck = 0;
+=======
+        private static AIHeroClient myHero { get { return ObjectManager.Player; } }
+>>>>>>> origin/master
         private static bool lastRandomMoveCoeff = false;
 
         private static float sumPingTime = 0;

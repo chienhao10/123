@@ -71,6 +71,7 @@ namespace ezEvade
 
         public static PositionInfo SetAllDodgeable(Vector2 position)
         {
+<<<<<<< HEAD
             List<int> dodgeableSpells = new List<int>();
             List<int> undodgeableSpells = new List<int>();
 
@@ -79,6 +80,11 @@ namespace ezEvade
                 Spell spell = entry.Value;
                 dodgeableSpells.Add(entry.Key);
             }
+=======
+            List<int> undodgeableSpells = new List<int>();
+
+            List<int> dodgeableSpells = (from entry in SpellDetector.spells let spell = entry.Value select entry.Key).ToList();
+>>>>>>> origin/master
 
             return new PositionInfo(
                 position,
@@ -129,6 +135,7 @@ namespace ezEvade
             if (posInfo == null)
                 return 0;
 
+<<<<<<< HEAD
             int highest = 0;
 
             foreach (var spellID in posInfo.undodgeableSpells)
@@ -142,6 +149,11 @@ namespace ezEvade
             }
 
             return highest;
+=======
+            int highest = posInfo.undodgeableSpells.Concat(new[] {0}).Max();
+
+            return posInfo.dodgeableSpells.Concat(new[] {highest}).Max();
+>>>>>>> origin/master
         }
 
         public static bool isSamePosInfo(this PositionInfo posInfo1, PositionInfo posInfo2)

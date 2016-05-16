@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+<<<<<<< HEAD
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
+=======
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
+using EloBuddy;
+>>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -22,7 +29,11 @@ namespace ezEvade
             {
                 charName = "AllChampions",
                 dangerlevel = 1,
+<<<<<<< HEAD
                 missileName = "summonersnowball",
+=======
+                missileName = "SummonerSnowball",
+>>>>>>> origin/master
                 name = "Poro Throw",
                 projectileSpeed = 1300,
                 radius = 60,
@@ -832,6 +843,7 @@ namespace ezEvade
             #region Ezreal
 
             Spells.Add(
+<<<<<<< HEAD
                 new SpellData
                 {
                     charName = "Ezreal",
@@ -901,6 +913,58 @@ namespace ezEvade
                     spellType = SpellType.Line,
 
                 });
+=======
+            new SpellData
+            {
+                charName = "Ezreal",
+                dangerlevel = 2,
+                missileName = "EzrealMysticShotMissile",
+                name = "Mystic Shot",
+                projectileSpeed = 2000,
+                radius = 60,
+                range = 1200,
+                spellDelay = 250,
+                spellKey = SpellSlot.Q,
+                spellName = "EzrealMysticShot",
+                extraSpellNames = new[] { "ezrealmysticshotwrapper", },
+                spellType = SpellType.Line,
+                collisionObjects = new[] { CollisionObjectType.EnemyChampions, CollisionObjectType.EnemyMinions },
+
+            });
+
+            Spells.Add(
+            new SpellData
+            {
+                charName = "Ezreal",
+                dangerlevel = 2,
+                name = "Trueshot Barrage",
+                projectileSpeed = 2000,
+                radius = 160,
+                range = 20000,
+                spellDelay = 1000,
+                spellKey = SpellSlot.R,
+                spellName = "EzrealTrueshotBarrage",
+                spellType = SpellType.Line,
+
+            });
+
+            Spells.Add(
+            new SpellData
+            {
+                charName = "Ezreal",
+                dangerlevel = 1,
+                missileName = "EzrealEssenceFluxMissile",
+                name = "Essence Flux",
+                projectileSpeed = 1600,
+                radius = 80,
+                range = 1050,
+                spellDelay = 250,
+                spellKey = SpellSlot.W,
+                spellName = "EzrealEssenceFlux",
+                spellType = SpellType.Line,
+
+            });
+>>>>>>> origin/master
 
             //Testing purpose
             /*Spells.Add(
@@ -2669,7 +2733,11 @@ namespace ezEvade
                 spellKey = SpellSlot.Q,
                 spellName = "SivirQ",
                 extraMissileNames = new[] { "SivirQMissileReturn" },
+<<<<<<< HEAD
                 spellType = SpellType.Line
+=======
+                spellType = SpellType.Line,
+>>>>>>> origin/master
             });
 
             #endregion Sivir
@@ -2861,6 +2929,7 @@ namespace ezEvade
             });
             #endregion Talon
 
+<<<<<<< HEAD
             #region Taric
 
             Spells.Add(
@@ -2883,6 +2952,8 @@ namespace ezEvade
 
             #endregion
 
+=======
+>>>>>>> origin/master
             #region Thresh
 
             Spells.Add(
@@ -2923,6 +2994,7 @@ namespace ezEvade
             });
             #endregion Thresh
 
+<<<<<<< HEAD
             #region Tryndamere
 
             Spells.Add(
@@ -2944,6 +3016,8 @@ namespace ezEvade
 
             #endregion
 
+=======
+>>>>>>> origin/master
             #region TwistedFate
 
             Spells.Add(

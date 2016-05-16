@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
+<<<<<<< HEAD
+=======
+using LeagueSharp.Common;
+>>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -79,7 +83,11 @@ namespace ezEvade.SpecialSpells
 
                             var objPosition = info.usePosition ? info.position.To2D() : info.obj.Position.To2D();
 
+<<<<<<< HEAD
                             if (args.End.To2D().Distance(objPosition) < 300)
+=======
+                            if (args.End.To2D().LSDistance(objPosition) < 300)
+>>>>>>> origin/master
                             {
                                 var dir = (objPosition - args.Start.To2D()).Normalized();
                                 var endPosition = objPosition + dir * 110;

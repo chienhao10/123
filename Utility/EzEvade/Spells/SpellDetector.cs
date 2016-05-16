@@ -12,6 +12,10 @@ using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using EzEvade;
 using SharpDX;
+<<<<<<< HEAD
+=======
+using LeagueSharp.Common;
+>>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -59,7 +63,10 @@ namespace ezEvade
         public static float lastCheckTime = 0;
         public static float lastCheckSpellCollisionTime = 0;
 
+<<<<<<< HEAD
         public static Menu menu;
+=======
+>>>>>>> origin/master
         public static Menu spellMenu;
 
         public SpellDetector(Menu mainMenu)
@@ -103,7 +110,11 @@ namespace ezEvade
                 && missile.StartPosition != null && missile.EndPosition != null)
             {
 
+<<<<<<< HEAD
                 if (missile.StartPosition.Distance(myHero.Position) < spellData.range + 1000)
+=======
+                if (missile.StartPosition.LSDistance(myHero.Position) < spellData.range + 1000)
+>>>>>>> origin/master
                 {
                     var hero = missile.SpellCaster;
 
@@ -184,7 +195,11 @@ namespace ezEvade
             foreach (var spell in spells.Values.ToList().Where(
                 s => (s.spellObject != null && s.spellObject.NetworkId == obj.NetworkId))) //isAlive
             {
+<<<<<<< HEAD
                 //Console.WriteLine("Distance: " + obj.Position.Distance(myHero.Position));
+=======
+                //Console.WriteLine("Distance: " + obj.Position.LSDistance(myHero.Position));
+>>>>>>> origin/master
 
                 DelayAction.Add(1, () => DeleteSpell(spell.spellID));
             }
@@ -205,7 +220,11 @@ namespace ezEvade
                 && missile.StartPosition != null && missile.EndPosition != null)
             {
 
+<<<<<<< HEAD
                 if (missile.StartPosition.Distance(myHero.Position) < spellData.range + 1000)
+=======
+                if (missile.StartPosition.LSDistance(myHero.Position) < spellData.range + 1000)
+>>>>>>> origin/master
                 {
                     var hero = missile.SpellCaster;
 
@@ -302,6 +321,7 @@ namespace ezEvade
 
                             if (spellData.isThreeWay == false && spellData.isSpecial == false)
                             {
+<<<<<<< HEAD
                                 foreach (KeyValuePair<int, Spell> entry in detectedSpells)
                                 {
                                     Spell spell = entry.Value;
@@ -316,12 +336,24 @@ namespace ezEvade
                                         foundMissile = true;
                                         break;
                                     }
+=======
+                                if ((from entry in detectedSpells select entry.Value into spell let dir = (args.End.To2D() - args.Start.To2D()).Normalized() where spell.spellObject != null
+                                                                                                                                                                   && spell.info.spellName.ToLower() == args.SData.Name.ToLower()
+                                                                                                                                                                   && spell.heroID == hero.NetworkId
+                                                                                                                                                                   && dir.AngleBetween(spell.direction) < 10 select spell).Any())
+                                {
+                                    foundMissile = true;
+>>>>>>> origin/master
                                 }
                             }
 
                             if (foundMissile == false)
                             {
+<<<<<<< HEAD
                                 CreateSpellData(hero, hero.ServerPosition, args.End, spellData, null);
+=======
+                                CreateSpellData(hero, hero.ServerPosition, args.End, spellData);
+>>>>>>> origin/master
                             }
 
                             /*if (spellData.spellType == SpellType.Line)
@@ -362,7 +394,11 @@ namespace ezEvade
                 return;
             }
 
+<<<<<<< HEAD
             if (spellStartPos.Distance(myHero.Position) < spellData.range + 1000)
+=======
+            if (spellStartPos.LSDistance(myHero.Position) < spellData.range + 1000)
+>>>>>>> origin/master
             {
                 Vector2 startPosition = spellStartPos.To2D();
                 Vector2 endPosition = spellEndPos.To2D();
@@ -376,7 +412,11 @@ namespace ezEvade
 
                 if (spellData.fixedRange) //for diana q
                 {
+<<<<<<< HEAD
                     if (endPosition.Distance(startPosition) > spellData.range)
+=======
+                    if (endPosition.LSDistance(startPosition) > spellData.range)
+>>>>>>> origin/master
                     {
                         //var heroCastPos = hero.ServerPosition.To2D();
                         //direction = (endPosition - heroCastPos).Normalized();
@@ -391,7 +431,11 @@ namespace ezEvade
 
                     if (spellData.useEndPosition)
                     {
+<<<<<<< HEAD
                         var range = spellEndPos.To2D().Distance(spellStartPos.To2D());
+=======
+                        var range = spellEndPos.To2D().LSDistance(spellStartPos.To2D());
+>>>>>>> origin/master
                         endTick = spellData.spellDelay + (range/spellData.projectileSpeed)*1000;
                         endPosition = spellEndPos.To2D();
                     }
@@ -416,12 +460,20 @@ namespace ezEvade
                             endPosition = startPosition + direction*spellData.range;
                         }
 
+<<<<<<< HEAD
                         endTick = endTick + 1000*startPosition.Distance(endPosition)/spellData.projectileSpeed;
+=======
+                        endTick = endTick + 1000*startPosition.LSDistance(endPosition)/spellData.projectileSpeed;
+>>>>>>> origin/master
                     }
                 }
                 else if (spellType == SpellType.Arc)
                 {
+<<<<<<< HEAD
                     endTick = endTick + 1000*startPosition.Distance(endPosition)/spellData.projectileSpeed;
+=======
+                    endTick = endTick + 1000*startPosition.LSDistance(endPosition)/spellData.projectileSpeed;
+>>>>>>> origin/master
 
                     if (obj != null)
                         endTick -= spellData.spellDelay;
@@ -434,6 +486,7 @@ namespace ezEvade
                 {
                     return;
                 }
+<<<<<<< HEAD
                 if (spellData.invert)
                 {
                     var reverse = (endPosition - startPosition).Normalized();
@@ -454,6 +507,30 @@ namespace ezEvade
                 newSpell.heroID = hero.NetworkId;
                 newSpell.info = spellData;
                 newSpell.spellType = spellType;
+=======
+
+                if (spellData.invert)
+                {
+                    var dir = (startPosition - endPosition).LSNormalized();
+                    endPosition = startPosition + dir * startPosition.LSDistance(endPosition);
+                }
+
+                endTick += extraEndTick;
+
+                Spell newSpell = new Spell
+                {
+                    startTime = EvadeUtils.TickCount,
+                    endTime = EvadeUtils.TickCount + endTick,
+                    startPos = startPosition,
+                    endPos = endPosition,
+                    height = spellEndPos.Z + spellData.extraDrawHeight,
+                    direction = direction,
+                    heroID = hero.NetworkId,
+                    info = spellData,
+                    spellType = spellType
+                };
+
+>>>>>>> origin/master
                 newSpell.radius = spellRadius > 0 ? spellRadius : newSpell.GetSpellRadius();
 
                 if (obj != null)
@@ -535,7 +612,11 @@ namespace ezEvade
                 {
                     spell.predictedEndPos = spell.GetSpellProjection(collisionObject.ServerPosition.To2D());
 
+<<<<<<< HEAD
                     if (spell.currentSpellPosition.Distance(collisionObject.ServerPosition)
+=======
+                    if (spell.currentSpellPosition.LSDistance(collisionObject.ServerPosition)
+>>>>>>> origin/master
                         < collisionObject.BoundingRadius + spell.radius)
                     {
                         DelayAction.Add(1, () => DeleteSpell(entry.Key));
@@ -549,7 +630,11 @@ namespace ezEvade
             if (ObjectCache.menuCache.cache["AdvancedSpellDetection"].Cast<CheckBox>().CurrentValue)
             {
                 Vector2 heroPos = myHero.Position.To2D();
+<<<<<<< HEAD
                 var extraDist = myHero.Distance(ObjectCache.myHeroCache.serverPos2D);
+=======
+                var extraDist = myHero.LSDistance(ObjectCache.myHeroCache.serverPos2D);
+>>>>>>> origin/master
 
                 if (spell.spellType == SpellType.Line)
                 {
@@ -560,14 +645,22 @@ namespace ezEvade
 
                     var projection = heroPos.ProjectOn(spellPos, spellEndPos);
 
+<<<<<<< HEAD
                     return projection.SegmentPoint.Distance(heroPos) <= walkRadius;
+=======
+                    return projection.SegmentPoint.LSDistance(heroPos) <= walkRadius;
+>>>>>>> origin/master
                 }
                 else if (spell.spellType == SpellType.Circular)
                 {
                     var walkRadius = ObjectCache.myHeroCache.moveSpeed*(spell.endTime - EvadeUtils.TickCount)/1000 +
                                      ObjectCache.myHeroCache.boundingRadius + spell.info.radius + extraDist + 10;
 
+<<<<<<< HEAD
                     if (heroPos.Distance(spell.endPos) < walkRadius)
+=======
+                    if (heroPos.LSDistance(spell.endPos) < walkRadius)
+>>>>>>> origin/master
                     {
                         return true;
                     }
@@ -575,14 +668,22 @@ namespace ezEvade
                 }
                 else if (spell.spellType == SpellType.Arc)
                 {
+<<<<<<< HEAD
                     var spellRange = spell.startPos.Distance(spell.endPos);
+=======
+                    var spellRange = spell.startPos.LSDistance(spell.endPos);
+>>>>>>> origin/master
                     var midPoint = spell.startPos + spell.direction*(spellRange/2);
                     var arcRadius = spell.info.radius*(1 + spellRange/100);
 
                     var walkRadius = ObjectCache.myHeroCache.moveSpeed*(spell.endTime - EvadeUtils.TickCount)/1000 +
                                      ObjectCache.myHeroCache.boundingRadius + arcRadius + extraDist + 10;
 
+<<<<<<< HEAD
                     if (heroPos.Distance(midPoint) < walkRadius)
+=======
+                    if (heroPos.LSDistance(midPoint) < walkRadius)
+>>>>>>> origin/master
                     {
                         return true;
                     }
@@ -729,6 +830,7 @@ namespace ezEvade
 
         public static List<int> GetSpellList()
         {
+<<<<<<< HEAD
             List<int> spellList = new List<int>();
 
             foreach (KeyValuePair<int, Spell> entry in SpellDetector.spells)
@@ -750,6 +852,9 @@ namespace ezEvade
             }
 
             return highest;
+=======
+            return SpellDetector.spells.Select(entry => entry.Value).Select(spell => spell.spellID).ToList();
+>>>>>>> origin/master
         }
 
         public static float GetLowestEvadeTime(out Spell lowestSpell)
@@ -923,7 +1028,11 @@ namespace ezEvade
 
                         if (spell.charName == "AllChampions")
                         {
+<<<<<<< HEAD
                             SpellSlot slot = hero.GetSpellSlot(spell.spellName);
+=======
+                            SpellSlot slot = hero.LSGetSpellSlot(spell.spellName);
+>>>>>>> origin/master
                             if (slot == SpellSlot.Unknown)
                             {
                                 continue;

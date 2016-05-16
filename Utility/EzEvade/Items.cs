@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
+<<<<<<< HEAD
+=======
+using LeagueSharp.Common;
+>>>>>>> origin/master
 
 namespace EzEvade
 {
@@ -32,6 +36,7 @@ namespace EzEvade
         /// </summary>
         public static bool CanUseItem(string name)
         {
+<<<<<<< HEAD
             foreach (var slot in ObjectManager.Player.InventoryItems.Where(slot => slot.Name == name))
             {
                 var inst = ObjectManager.Player.Spellbook.Spells.FirstOrDefault(spell =>
@@ -40,6 +45,9 @@ namespace EzEvade
             }
 
             return false;
+=======
+            return ObjectManager.Player.InventoryItems.Where(slot => slot.Name == name).Select(slot => ObjectManager.Player.Spellbook.Spells.FirstOrDefault(spell => (int) spell.Slot == slot.Slot + (int) SpellSlot.Item1)).Select(inst => inst != null && inst.State == SpellState.Ready).FirstOrDefault();
+>>>>>>> origin/master
         }
 
         /// <summary>
@@ -47,6 +55,7 @@ namespace EzEvade
         /// </summary>
         public static bool CanUseItem(int id)
         {
+<<<<<<< HEAD
             foreach (var slot in ObjectManager.Player.InventoryItems.Where(slot => slot.Id == (ItemId) id))
             {
                 var inst = ObjectManager.Player.Spellbook.Spells.FirstOrDefault(spell =>
@@ -55,6 +64,9 @@ namespace EzEvade
             }
 
             return false;
+=======
+            return ObjectManager.Player.InventoryItems.Where(slot => slot.Id == (ItemId) id).Select(slot => ObjectManager.Player.Spellbook.Spells.FirstOrDefault(spell => (int) spell.Slot == slot.Slot + (int) SpellSlot.Item1)).Select(inst => inst != null && inst.State == SpellState.Ready).FirstOrDefault();
+>>>>>>> origin/master
         }
 
         /// <summary>
@@ -112,10 +124,14 @@ namespace EzEvade
         {
             if (position != Vector3.Zero)
             {
+<<<<<<< HEAD
                 foreach (var slot in ObjectManager.Player.InventoryItems.Where(slot => slot.Id == (ItemId) id))
                 {
                     return ObjectManager.Player.Spellbook.CastSpell(slot.SpellSlot, position);
                 }
+=======
+                return ObjectManager.Player.InventoryItems.Where(slot => slot.Id == (ItemId) id).Select(slot => ObjectManager.Player.Spellbook.CastSpell(slot.SpellSlot, position)).FirstOrDefault();
+>>>>>>> origin/master
             }
 
             return false;
@@ -182,7 +198,11 @@ namespace EzEvade
 
             public bool IsInRange(Vector3 target)
             {
+<<<<<<< HEAD
                 return ObjectManager.Player.ServerPosition.Distance(target, true) < RangeSqr;
+=======
+                return ObjectManager.Player.ServerPosition.LSDistance(target, true) < RangeSqr;
+>>>>>>> origin/master
             }
 
             public bool IsOwned(AIHeroClient target = null)

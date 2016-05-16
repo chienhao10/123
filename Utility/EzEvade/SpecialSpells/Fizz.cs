@@ -37,7 +37,11 @@ namespace ezEvade.SpecialSpells
             {
                 if (args.Target != null && args.Target.IsMe)
                 {
+<<<<<<< HEAD
                     SpellDetector.CreateSpellData(hero, args.Start, args.End, spellData, null, 0);
+=======
+                    SpellDetector.CreateSpellData(hero, args.Start, args.End, spellData);
+>>>>>>> origin/master
                 }
 
                 specialSpellArgs.noProcess = true;

@@ -20,7 +20,10 @@ namespace ezEvade
         public static List<EvadeSpellData> itemSpells = new List<EvadeSpellData>();
         public static EvadeCommand lastSpellEvadeCommand = new EvadeCommand { isProcessed = true, timestamp = EvadeUtils.TickCount };
 
+<<<<<<< HEAD
         public static Menu menu;
+=======
+>>>>>>> origin/master
         public static Menu evadeSpellMenu;
 
         public EvadeSpell(Menu mainMenu)
@@ -32,7 +35,11 @@ namespace ezEvade
             //  evadeSpellMenu = menu.IsSubMenu ? menu.Parent.AddSubMenuEx("Evade Spells", "EvadeSpells") : menu.AddSubMenuEx("Evade Spells", "EvadeSpells");
 
             LoadEvadeSpellList();
+<<<<<<< HEAD
             DelayAction.Add(100, () => CheckForItems());
+=======
+            DelayAction.Add(100, CheckForItems);
+>>>>>>> origin/master
         }
 
         private void Game_OnGameUpdate(EventArgs args)
@@ -45,7 +52,11 @@ namespace ezEvade
             if (EvadeUtils.TickCount - lastSpellEvadeCommand.timestamp < 250 && myHero.IsDashing()
                 && lastSpellEvadeCommand.evadeSpellData.evadeType == EvadeType.Dash)
             {
+<<<<<<< HEAD
                 //Console.WriteLine("" + dashInfo.EndPos.Distance(lastSpellEvadeCommand.targetPosition));
+=======
+                //Console.WriteLine("" + dashInfo.EndPos.LSDistance(lastSpellEvadeCommand.targetPosition));
+>>>>>>> origin/master
                 lastSpellEvadeCommand.targetPosition = Player.Instance.GetDashInfo().EndPos.To2D();
             }
         }
@@ -65,7 +76,11 @@ namespace ezEvade
                 }
             }
 
+<<<<<<< HEAD
             DelayAction.Add(5000, () => CheckForItems());
+=======
+            DelayAction.Add(5000, CheckForItems);
+>>>>>>> origin/master
         }
 
         private static Menu CreateEvadeSpellMenu(EvadeSpellData spell)
@@ -79,7 +94,11 @@ namespace ezEvade
             }
             evadeSpellMenu.AddGroupLabel(menuName);
             // Menu newSpellMenu = evadeSpellMenu.IsSubMenu ? evadeSpellMenu.Parent.AddSubMenuEx(menuName, spell.charName + spell.name + "EvadeSpellSettings") : evadeSpellMenu.AddSubMenuEx(menuName, spell.charName + spell.name + "EvadeSpellSettings");
+<<<<<<< HEAD
             evadeSpellMenu.Add(spell.name + "UseEvadeSpell", new CheckBox("Use Spell", true));
+=======
+            evadeSpellMenu.Add(spell.name + "UseEvadeSpell", new CheckBox("Use Spell"));
+>>>>>>> origin/master
             evadeSpellMenu.Add(spell.name + "EvadeSpellDangerLevel", new Slider("Danger Level", spell.dangerlevel = 1, 0, 3));
             var slider = evadeSpellMenu.Add(spell.name + "EvadeSpellMode", new Slider("Spell Mode", GetDefaultSpellMode(spell), 0, 2));
             var array = new[] { "Undodgeable", "Activation Time", "Always" };
@@ -110,6 +129,7 @@ namespace ezEvade
             if (!Situation.ShouldUseEvadeSpell())
                 return false;
 
+<<<<<<< HEAD
             foreach (KeyValuePair<int, Spell> entry in SpellDetector.spells)
             {
                 Spell spell = entry.Value;
@@ -124,6 +144,9 @@ namespace ezEvade
             }
 
             return false;
+=======
+            return SpellDetector.spells.Select(entry => entry.Value).Where(spell => ObjectCache.myHeroCache.serverPos2D.InSkillShot(spell, ObjectCache.myHeroCache.boundingRadius)).Any(spell => ActivateEvadeSpell(spell, true));
+>>>>>>> origin/master
         }
 
         public static void UseEvadeSpell()
@@ -140,6 +163,7 @@ namespace ezEvade
                 return;
             }
 
+<<<<<<< HEAD
             foreach (KeyValuePair<int, Spell> entry in SpellDetector.spells)
             {
                 Spell spell = entry.Value;
@@ -152,6 +176,12 @@ namespace ezEvade
                         return;
                     }
                 }
+=======
+            if (SpellDetector.spells.Select(entry => entry.Value).Where(ShouldActivateEvadeSpell).Any(spell => ActivateEvadeSpell(spell)))
+            {
+                Evade.SetAllUndodgeable();
+                return;
+>>>>>>> origin/master
             }
 
         }

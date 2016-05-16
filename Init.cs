@@ -4,11 +4,19 @@ using System;
 using System.Collections.Generic;
 using EloBuddy;
 using EloBuddy.SDK.Events;
+<<<<<<< HEAD
+=======
+using ExorAIO.Core;
+>>>>>>> origin/master
 using PortAIO.Utility;
 using LeagueSharp.Common;
 using SharpDX;
 using PortAIO.Properties;
 using iLucian;
+<<<<<<< HEAD
+=======
+using EloBuddy.SDK;
+>>>>>>> origin/master
 using EloBuddy.SDK.Notifications;
 // ReSharper disable ObjectCreationAsStatement
 
@@ -21,6 +29,7 @@ namespace PortAIO
         private static void Main()
         {
             Loading.OnLoadingComplete += Initialize;
+<<<<<<< HEAD
             //Game.OnUpdate += Game_OnUpdate;
         }
 
@@ -31,6 +40,18 @@ namespace PortAIO
 
         private static Render.Sprite Intro;
         //private static float IntroTimer = Game.Time;
+=======
+            Game.OnUpdate += Game_OnUpdate;
+        }
+
+        private static void Game_OnUpdate(EventArgs args)
+        {
+            //Console.WriteLine(Orbwalker.ActiveModesFlags.ToString());
+        }
+
+        private static Render.Sprite Intro;
+        private static float IntroTimer = Game.Time;
+>>>>>>> origin/master
         public static SCommon.PluginBase.Champion Champion;
         public static List<string> RandomUltChampsList = new List<string>(new[] { "Ezreal", "Jinx", "Ashe", "Draven", "Gangplank", "Ziggs", "Lux", "Xerath" });
         public static List<string> BaseUltList = new List<string>(new[] { "Jinx", "Ashe", "Draven", "Ezreal", "Karthus" });
@@ -48,9 +69,13 @@ namespace PortAIO
         private static void Initialize(EventArgs args)
         {
 
+<<<<<<< HEAD
             Notifications.Show(new SimpleNotification("PortAIO-Reborn", "Welcome to PortAIO-Reborn, this is a complete AIO made for every single champion. If you experience bugs or have suggestions or just have something to report please go to the github and view the instructions to post a new issue. Enjoy using PortAIO and GLHF!"), 10000);
             Notifications.Show(new SimpleNotification("PortAIO-Reborn", "Will keep updated by Rexy & Pikachu7"),10000);
             Notifications.Show(new SimpleNotification("PortAIO-Reborn","The Lastest Fork of PortAIO got by Muse30"),10000);
+=======
+            Notifications.Show(new SimpleNotification("PortAIO", "Welcome to PortAIO, this is a complete AIO made for every single champion. If you experience bugs or have suggestions or just have something to report please go to the github and view the instructions to post a new issue. Enjoy using PortAIO and GLHF!"), 10000);
+>>>>>>> origin/master
 
             Loader.Menu();
 
@@ -64,12 +89,15 @@ namespace PortAIO
 
             if (!Loader.champOnly)
             {
+<<<<<<< HEAD
                 if (Loader.ChatLogger)
                     //Utility.ChatLogger.Program.Main();
 
                 if (Loader.WhiteFeeder)
                     Utility.WhiteFeeder.Program.Main();
 
+=======
+>>>>>>> origin/master
                 if (Loader.useActivator)
                 {
                     ElUtilitySuite.Entry.OnLoad();
@@ -115,7 +143,10 @@ namespace PortAIO
                 if (Loader.evade)
                 {
                     new ezEvade.Evade();
+<<<<<<< HEAD
                     Chat.Print("EzEvade port by Melodagg",System.Drawing.Color.Blue);
+=======
+>>>>>>> origin/master
                 }
 
                 if (Loader.cheat)

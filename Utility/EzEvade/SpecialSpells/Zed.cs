@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using EloBuddy;
 using EloBuddy.SDK;
 using SharpDX;
+<<<<<<< HEAD
+=======
+using LeagueSharp.Common;
+>>>>>>> origin/master
 
 namespace ezEvade.SpecialSpells
 {
@@ -40,7 +44,11 @@ namespace ezEvade.SpecialSpells
                     {
                         var info = entry.Value;
 
+<<<<<<< HEAD
                         if (info.Name == "Shadow" && info.usePosition && info.position.Distance(obj.Position) < 5)
+=======
+                        if (info.Name == "Shadow" && info.usePosition && info.position.LSDistance(obj.Position) < 5)
+>>>>>>> origin/master
                         {
                             info.usePosition = false;
                             info.obj = obj;
@@ -79,12 +87,20 @@ namespace ezEvade.SpecialSpells
                             Vector3 endPos2;
                             if (info.usePosition == false)
                             {
+<<<<<<< HEAD
                                 endPos2 = info.obj.Position.Extend(args.End, spellData.range).To3DWorld();
+=======
+                                endPos2 = info.obj.Position.LSExtend(args.End, spellData.range);
+>>>>>>> origin/master
                                 SpellDetector.CreateSpellData(hero, info.obj.Position, endPos2, spellData, null, 0, false);
                             }
                             else
                             {
+<<<<<<< HEAD
                                 endPos2 = info.position.Extend(args.End, spellData.range).To3DWorld();
+=======
+                                endPos2 = info.position.LSExtend(args.End, spellData.range);
+>>>>>>> origin/master
                                 SpellDetector.CreateSpellData(hero, info.position, endPos2, spellData, null, 0, false);
                             }
 
@@ -105,11 +121,21 @@ namespace ezEvade.SpecialSpells
             {
                 if (!ObjectTracker.objTracker.ContainsKey(obj.NetworkId))
                 {
+<<<<<<< HEAD
                     ObjectTrackerInfo info = new ObjectTrackerInfo(obj);
                     info.Name = "Shadow";
                     info.OwnerNetworkID = missile.SpellCaster.NetworkId;
                     info.usePosition = true;
                     info.position = missile.EndPosition;
+=======
+                    ObjectTrackerInfo info = new ObjectTrackerInfo(obj)
+                    {
+                        Name = "Shadow",
+                        OwnerNetworkID = missile.SpellCaster.NetworkId,
+                        usePosition = true,
+                        position = missile.EndPosition
+                    };
+>>>>>>> origin/master
 
                     ObjectTracker.objTracker.Add(obj.NetworkId, info);
 

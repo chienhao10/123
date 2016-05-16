@@ -7,6 +7,10 @@ using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Menu.Values;
 using SharpDX;
+<<<<<<< HEAD
+=======
+using LeagueSharp.Common;
+>>>>>>> origin/master
 
 namespace ezEvade
 {
@@ -55,9 +59,15 @@ namespace ezEvade
 
             if (spell.spellType == SpellType.Arc)
             {
+<<<<<<< HEAD
                 var spellRange = spell.startPos.Distance(spell.endPos);
                 var arcRadius = spell.info.radius * (1 + spellRange / 100) + extraRadius;
 
+=======
+                var spellRange = spell.startPos.LSDistance(spell.endPos);
+                var arcRadius = spell.info.radius * (1 + spellRange/100) + extraRadius;
+                                
+>>>>>>> origin/master
                 return arcRadius;
             }
 
@@ -143,6 +153,7 @@ namespace ezEvade
 
             List<Obj_AI_Base> collisionCandidates = new List<Obj_AI_Base>();
             var spellPos = spell.currentSpellPosition;
+<<<<<<< HEAD
             var distanceToHero = spellPos.Distance(ObjectCache.myHeroCache.serverPos2D);
 
             if (spell.info.collisionObjects.Contains(CollisionObjectType.EnemyChampions))
@@ -152,10 +163,18 @@ namespace ezEvade
                 {
                     collisionCandidates.Add(hero);
                 }
+=======
+            var distanceToHero = spellPos.LSDistance(ObjectCache.myHeroCache.serverPos2D);
+
+            if (spell.info.collisionObjects.Contains(CollisionObjectType.EnemyChampions))
+            {
+                collisionCandidates.AddRange(EntityManager.Heroes.Allies.Where(h => !h.IsMe && h.IsValidTarget(distanceToHero)).Cast<Obj_AI_Base>());
+>>>>>>> origin/master
             }
 
             if (spell.info.collisionObjects.Contains(CollisionObjectType.EnemyMinions))
             {
+<<<<<<< HEAD
                 foreach (var minion in ObjectManager.Get<Obj_AI_Minion>()
                     .Where(h => h.Team == Evade.myHero.Team && h.IsValidTarget(distanceToHero, false, spellPos.To3D())))
                 {
@@ -180,6 +199,14 @@ namespace ezEvade
             }
 
             return null;
+=======
+                collisionCandidates.AddRange(ObjectManager.Get<Obj_AI_Minion>().Where(h => h.Team == Evade.myHero.Team && h.IsValidTarget()).Where(minion => minion.CharData.BaseSkinName.ToLower() != "teemomushroom" && minion.CharData.BaseSkinName.ToLower() != "shacobox").Cast<Obj_AI_Base>());
+            }
+
+            var sortedCandidates = collisionCandidates.OrderBy(h => h.LSDistance(spellPos));
+
+            return sortedCandidates.FirstOrDefault(candidate => candidate.ServerPosition.To2D().InSkillShot(spell, candidate.BoundingRadius, false));
+>>>>>>> origin/master
         }
 
         public static float GetSpellHitTime(this Spell spell, Vector2 pos)
@@ -193,7 +220,11 @@ namespace ezEvade
                 }
 
                 var spellPos = spell.GetCurrentSpellPosition(true, ObjectCache.gamePing);
+<<<<<<< HEAD
                 return 1000 * spellPos.Distance(pos) / spell.info.projectileSpeed;
+=======
+                return 1000 * spellPos.LSDistance(pos) / spell.info.projectileSpeed;
+>>>>>>> origin/master
             }
             else if (spell.spellType == SpellType.Circular)
             {
@@ -212,12 +243,20 @@ namespace ezEvade
             if (spell.spellType == SpellType.Line)
             {
                 var projection = heroPos.ProjectOn(spell.startPos, spell.endPos).SegmentPoint;
+<<<<<<< HEAD
                 evadeTime = 1000 * (spell.radius - heroPos.Distance(projection) + hero.BoundingRadius) / hero.MoveSpeed;
+=======
+                evadeTime = 1000 * (spell.radius - heroPos.LSDistance(projection) + hero.BoundingRadius) / hero.MoveSpeed;
+>>>>>>> origin/master
                 spellHitTime = spell.GetSpellHitTime(projection);
             }
             else if (spell.spellType == SpellType.Circular)
             {
+<<<<<<< HEAD
                 evadeTime = 1000 * (spell.radius - heroPos.Distance(spell.endPos)) / hero.MoveSpeed;
+=======
+                evadeTime = 1000 * (spell.radius - heroPos.LSDistance(spell.endPos)) / hero.MoveSpeed;
+>>>>>>> origin/master
                 spellHitTime = spell.GetSpellHitTime(heroPos);
             }
 
@@ -251,12 +290,21 @@ namespace ezEvade
         public static void UpdateSpellInfo(this Spell spell)
         {
             spell.currentSpellPosition = spell.GetCurrentSpellPosition();
+<<<<<<< HEAD
             spell.currentNegativePosition = spell.GetCurrentSpellPosition(true, 0);
+=======
+            spell.currentNegativePosition = spell.GetCurrentSpellPosition(true);
+
+>>>>>>> origin/master
             spell.dangerlevel = spell.GetSpellDangerLevel();
 
             if (spell.info.name == "TaricE")
             {
+<<<<<<< HEAD
                 var taric = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.ChampionName == "Taric");
+=======
+                var taric = HeroManager.Enemies.FirstOrDefault(x => x.ChampionName == "Taric");
+>>>>>>> origin/master
                 if (taric != null)
                 {
                     spell.currentSpellPosition = taric.ServerPosition.To2D();
@@ -266,7 +314,11 @@ namespace ezEvade
 
             if (spell.info.name == "TaricE2")
             {
+<<<<<<< HEAD
                 var partner = EntityManager.Heroes.Enemies.FirstOrDefault(x => x.HasBuff("taricwleashactive") && x.ChampionName != "Taric");
+=======
+                var partner = HeroManager.Enemies.FirstOrDefault(x => x.HasBuff("taricwleashactive") && x.ChampionName != "Taric");
+>>>>>>> origin/master
                 if (partner != null)
                 {
                     spell.currentSpellPosition = partner.ServerPosition.To2D();
@@ -275,12 +327,21 @@ namespace ezEvade
             }
         }
 
+<<<<<<< HEAD
         public static Vector2 GetCurrentSpellPosition(this Spell spell, bool allowNegative = false, float delay = 0,
+=======
+        public static Vector2 GetCurrentSpellPosition(this Spell spell, bool allowNegative = false, float delay = 0, 
+>>>>>>> origin/master
             float extraDistance = 0)
         {
             Vector2 spellPos = spell.startPos;
 
+<<<<<<< HEAD
             if (spell.spellType == SpellType.Line || spell.spellType == SpellType.Arc)
+=======
+            if (spell.spellType == SpellType.Line
+                || spell.spellType == SpellType.Arc)
+>>>>>>> origin/master
             {
                 float spellTime = EvadeUtils.TickCount - spell.startTime - spell.info.spellDelay;
 
@@ -298,7 +359,11 @@ namespace ezEvade
             }
 
             if (spell.spellObject != null && spell.spellObject.IsValid && spell.spellObject.IsVisible &&
+<<<<<<< HEAD
                 spell.spellObject.Position.To2D().Distance(ObjectCache.myHeroCache.serverPos2D) < spell.info.range + 1000)
+=======
+                spell.spellObject.Position.To2D().LSDistance(ObjectCache.myHeroCache.serverPos2D) < spell.info.range + 1000)
+>>>>>>> origin/master
             {
                 spellPos = spell.spellObject.Position.To2D();
             }
@@ -359,7 +424,11 @@ namespace ezEvade
             var endRightPos = endPos + pSpellDir * (spellRadius + myBoundingRadius);
             var endLeftPos = endPos - pSpellDir * (spellRadius + myBoundingRadius);
 
+<<<<<<< HEAD
             List<Geometry.IntersectionResult> intersects = new List<Geometry.IntersectionResult>();
+=======
+            List<EloBuddy.SDK.Geometry.IntersectionResult> intersects = new List<EloBuddy.SDK.Geometry.IntersectionResult>();
+>>>>>>> origin/master
             Vector2 heroPos = ObjectManager.Player.ServerPosition.To2D();
 
             intersects.Add(a.Intersection(b, startRightPos, startLeftPos));
@@ -367,7 +436,11 @@ namespace ezEvade
             intersects.Add(a.Intersection(b, startRightPos, endRightPos));
             intersects.Add(a.Intersection(b, startLeftPos, endLeftPos));
 
+<<<<<<< HEAD
             var sortedIntersects = intersects.Where(i => i.Intersects).OrderBy(i => i.Point.Distance(heroPos)); //Get first intersection
+=======
+            var sortedIntersects = intersects.Where(i => i.Intersects).OrderBy(i => i.Point.LSDistance(heroPos)); //Get first intersection
+>>>>>>> origin/master
 
             if (sortedIntersects.Count() > 0)
             {
@@ -380,4 +453,8 @@ namespace ezEvade
         }
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

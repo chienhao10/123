@@ -27,9 +27,17 @@ namespace ezEvade.SpecialSpells
                     return;
                 }
 
+<<<<<<< HEAD
                 ObjectTrackerInfo info = new ObjectTrackerInfo(hero);
                 info.Name = "TheDoomBall";
                 info.OwnerNetworkID = hero.NetworkId;
+=======
+                ObjectTrackerInfo info = new ObjectTrackerInfo(hero)
+                {
+                    Name = "TheDoomBall",
+                    OwnerNetworkID = hero.NetworkId
+                };
+>>>>>>> origin/master
 
                 ObjectTracker.objTracker.Add(hero.NetworkId, info);
 
@@ -147,7 +155,11 @@ namespace ezEvade.SpecialSpells
                         if (info.usePosition)
                         {
                             Vector3 endPos2 = info.position;
+<<<<<<< HEAD
                             SpellDetector.CreateSpellData(hero, endPos2, endPos2, spellData, null, 0);
+=======
+                            SpellDetector.CreateSpellData(hero, endPos2, endPos2, spellData);
+>>>>>>> origin/master
                         }
                         else
                         {
@@ -155,7 +167,11 @@ namespace ezEvade.SpecialSpells
                                 return;
 
                             Vector3 endPos2 = info.obj.Position;
+<<<<<<< HEAD
                             SpellDetector.CreateSpellData(hero, endPos2, endPos2, spellData, null, 0);
+=======
+                            SpellDetector.CreateSpellData(hero, endPos2, endPos2, spellData);
+>>>>>>> origin/master
                         }
                     }
                 }

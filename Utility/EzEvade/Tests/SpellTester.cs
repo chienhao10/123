@@ -17,9 +17,12 @@ namespace ezEvade
 {
     class SpellTester
     {
+<<<<<<< HEAD
         public static Menu menu;
         public static Menu selectSpellMenu;
 
+=======
+>>>>>>> origin/master
         private static AIHeroClient myHero { get { return ObjectManager.Player; } }
 
         private static Dictionary<string, Dictionary<string, SpellData>> spellCache
